@@ -1,0 +1,17 @@
+{
+  "name": "Bài Hũ",
+  "short_name": "Bài Hũ",
+  "description": "Game bài bàn nhậu: kéo lá, tính nút, 7 nút đổ HŨ NỔ.",
+  "lang": "vi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07110c",
+  "theme_color": "#07110c",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
