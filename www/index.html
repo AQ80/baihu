@@ -16,8 +16,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none}
 body{background:
-  radial-gradient(90% 55% at 50% 58%,rgba(34,104,74,.95) 0%,rgba(18,62,44,.95) 45%,rgba(8,22,16,1) 100%),
-  repeating-radial-gradient(circle at 30% 20%,rgba(255,255,255,.012) 0 2px,transparent 2px 4px),#07110c}
+  radial-gradient(90% 55% at 50% 58%,rgba(34,104,74,.95) 0%,rgba(18,62,44,.95) 45%,rgba(8,22,16,1) 100%),#07110c}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%)}
 #main{height:100%;display:flex;flex-direction:column;align-items:center;padding:calc(env(safe-area-inset-top,0px) + clamp(18px,4vh,40px)) 14px calc(env(safe-area-inset-bottom,0px) + 66px)}
 .ttl{text-align:center;line-height:1;flex:none}
@@ -25,7 +24,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 .sub{margin-top:6px;font-size:clamp(11px,3.2vw,14px);font-weight:800;letter-spacing:.28em;color:#f3d27a;opacity:.85}
 .center{flex:1;min-height:0;width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,1.6vh,16px)}
 .hu{flex:none;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;padding:5px 16px 5px 10px;border-radius:999px;background:linear-gradient(180deg,rgba(40,20,10,.65),rgba(20,10,6,.65));border:1.5px solid rgba(243,210,122,.55);box-shadow:0 4px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,240,200,.15)}
-.hu svg{height:46px;overflow:visible;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5))}
+.hu svg{height:46px;overflow:visible}
 .huL{font-size:13px;color:#f3e2b5;font-weight:700;letter-spacing:.06em}
 .huL b{color:var(--beer);font-size:17px}
 .hu.bump svg{animation:bump .5s}
@@ -89,8 +88,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 .deck.idle .dar.l{animation:dl 1.2s ease-in-out infinite}.deck.idle .dar.r{animation:dr 1.2s ease-in-out infinite}
 @keyframes dl{0%,100%{transform:translate(-80%,40%);opacity:.55}50%{transform:translate(-120%,80%);opacity:1}}
 @keyframes dr{0%,100%{transform:translate(80%,40%) scaleX(-1);opacity:.55}50%{transform:translate(120%,80%) scaleX(-1);opacity:1}}
-.deck.idle .cd{animation:nudge 2.6s ease-in-out infinite}
-@keyframes nudge{0%,70%,100%{transform:none}78%{transform:translateX(-7px) rotate(-3deg)}88%{transform:translateX(7px) rotate(3deg)}}
+.deck .cd{will-change:transform}
+.deck.idle .cd{animation:nudge 3.2s ease-in-out infinite}
+@keyframes nudge{0%,45%,100%{transform:none}18%{transform:translateX(-6px) rotate(-3deg)}28%{transform:translateX(-4px) rotate(-2deg)}68%{transform:translateX(6px) rotate(3deg)}78%{transform:translateX(4px) rotate(2deg)}}
 .pile.target{filter:drop-shadow(0 0 14px rgba(255,194,61,.9))}
 .pile.target .lbl{color:var(--beer)}
 .flyer.drag{transition:none!important;z-index:6}
@@ -123,7 +123,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 #credit .cr-ic{font-size:16px;margin-right:2px;display:inline-block;transform-origin:50% 90%;animation:cheers 3s ease-in-out infinite}
 @keyframes cheers{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(-14deg)}90%{transform:rotate(12deg)}95%{transform:rotate(-6deg)}}
 #helpBtn{position:fixed;right:18px;bottom:calc(env(safe-area-inset-bottom,0px) + 17px);width:38px;height:38px;border-radius:50%;z-index:30;background:#0e1f24;border:1px solid rgba(255,255,255,.12);box-shadow:0 2px 8px rgba(0,0,0,.3);color:#e8f0f2;font:800 18px/1 -apple-system,sans-serif}
-.ov{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center;background:rgba(5,4,12,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s}
+.ov{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center;background:rgba(5,4,12,.9);opacity:0;pointer-events:none;transition:opacity .25s}
 .ov.show{opacity:1;pointer-events:auto}
 .ov .eq{font-size:clamp(22px,6.5vw,30px);font-weight:800;color:#cfe9f0}
 .ov .eq b{color:#fff}
@@ -141,6 +141,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 .shake{animation:shake .45s 2}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-8px) rotate(-2deg)}75%{transform:translateX(8px) rotate(2deg)}}
 #fx{position:fixed;inset:0;z-index:60;pointer-events:none}
+button{touch-action:manipulation}
 </style>
 </head>
 <body>
@@ -213,10 +214,10 @@ function topOf(side){const a=S[side];return a[a.length-1]}
 function streak(){const h=S.hu||0;
   const fuse=[[62,30,74,14,86,10],[62,30,70,20,78,15],[62,30,66,25,69,22]][Math.min(h,2)];
   const tip=[fuse[4],fuse[5]];
-  const glow=['rgba(255,120,40,0)','rgba(255,110,30,.45)','rgba(255,60,20,.85)'][Math.min(h,2)];
+  const glow=['rgba(255,255,255,.7)','rgba(255,110,30,.45)','rgba(255,60,20,.85)'][Math.min(h,2)];
   $('huSvg').setAttribute('viewBox','0 0 100 100');
   $('huSvg').innerHTML=`<defs><radialGradient id="bb" cx="38%" cy="38%" r="70%"><stop offset="0" stop-color="#6b6f7a"/><stop offset=".45" stop-color="#2a2c33"/><stop offset="1" stop-color="#0b0b0f"/></radialGradient>
-    <radialGradient id="bg2" cx="50%" cy="50%" r="50%"><stop offset=".55" stop-color="${glow}"/><stop offset="1" stop-color="rgba(255,60,20,0)"/></radialGradient></defs>
+    <radialGradient id="bg2" cx="50%" cy="50%" r="50%"><stop offset=".55" stop-color="${glow}"/><stop offset="1" stop-color="${h?'rgba(255,60,20,0)':'rgba(255,255,255,0)'}"/></radialGradient></defs>
     <circle cx="44" cy="60" r="40" fill="url(#bg2)"/>
     <circle cx="44" cy="60" r="30" fill="url(#bb)" stroke="#000" stroke-width="1.5"/>
     <ellipse cx="34" cy="48" rx="8" ry="5" fill="#fff" opacity=".35" transform="rotate(-30 34 48)"/>
@@ -241,7 +242,8 @@ function sBig(){const t=A().currentTime;[392,523,659,784,1047].forEach((f,i)=>{t
 // fx
 const fx=$('fx'),fc=fx.getContext('2d');let parts=[],raf;
 function burst(em,n){fx.width=innerWidth;fx.height=innerHeight;for(let i=0;i<n;i++)parts.push({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*13,vy:-Math.random()*13-4,r:0,vr:(Math.random()-.5)*.3,e:em[i%em.length],s:18+Math.random()*16,l:1});if(!raf)loop()}
-function loop(){fc.clearRect(0,0,fx.width,fx.height);parts=parts.filter(p=>p.l>0);for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vy+=.4;p.r+=p.vr;p.l-=.01;fc.save();fc.globalAlpha=Math.min(1,p.l*2);fc.translate(p.x,p.y);fc.rotate(p.r);fc.font=p.s+'px serif';fc.fillText(p.e,-p.s/2,p.s/2);fc.restore()}raf=parts.length?requestAnimationFrame(loop):null}
+const EMC={};function emo(e){if(!EMC[e]){const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');x.font='52px serif';x.textAlign='center';x.textBaseline='middle';x.fillText(e,32,36);EMC[e]=c}return EMC[e]}
+function loop(){fc.clearRect(0,0,fx.width,fx.height);parts=parts.filter(p=>p.l>0&&p.y<fx.height+60);for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vy+=.4;p.r+=p.vr;p.l-=.01;fc.globalAlpha=Math.min(1,p.l*2);fc.setTransform(Math.cos(p.r),Math.sin(p.r),-Math.sin(p.r),Math.cos(p.r),p.x,p.y);fc.drawImage(emo(p.e),-p.s/2,-p.s/2,p.s,p.s)}fc.setTransform(1,0,0,1,0,0);fc.globalAlpha=1;raf=parts.length?requestAnimationFrame(loop):null}
 
 function judge(n,o){
   if(n===o){
@@ -315,7 +317,7 @@ function result(r,card,other,bonus){
   delete $('rText').dataset.used;
   ov.classList.add('show');
   if(r.safe)sSafe();else{(bonus||r.lv>=3)?sBig():sHit(r.lv);$('board').classList.add('shake');setTimeout(()=>$('board').classList.remove('shake'),900);navigator.vibrate&&navigator.vibrate(60);
-    if(bonus||r.lv>=3)burst(r.trum?['👑','🛡️','✨','🍻']:bonus?['🔥','🍺','💥']:['🍺','🍻','✨'],r.trum?90:50);if(r.trum)navigator.vibrate&&navigator.vibrate([80,60,80,60,200]);}
+    if(bonus||r.lv>=3)burst(r.trum?['👑','🛡️','✨','🍻']:bonus?['🔥','🍺','💥']:['🍺','🍻','✨'],r.trum?50:32);if(r.trum)navigator.vibrate&&navigator.vibrate([80,60,80,60,200]);}
 }
 $('rOk').onclick=()=>{if(!$('rName').hidden){const n=($('rName').value.trim()||'Trùm Hũ').toLocaleUpperCase('vi');S.shields=S.shields||[];S.shields.push(n);$('rName').hidden=true;$('rName').blur();save();streak();}
   $('ovRes').classList.remove('show');
@@ -329,7 +331,7 @@ function drawGuide(){
   const rel=r=>({l:r.left-b.left,t:r.top-b.top,r:r.right-b.left,b:r.bottom-b.top,w:r.width,h:r.height});
   const D=rel(d),out=[];
   const defs=`<defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff1b0"/><stop offset="1" stop-color="#ffb52e"/></linearGradient>
-    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter></defs>`;
+    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter><filter id="gl2" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`;
   for(const [id,sg] of [['pL',-1],['pR',1]]){
     const P=rel($(id).getBoundingClientRect());
     const x0=sg<0?D.l+D.w*.12:D.r-D.w*.12, y0=D.b-D.h*.06;
@@ -338,10 +340,15 @@ function drawGuide(){
     // tangent at end
     const tx=x1-cx,ty=y1-cy,len=Math.hypot(tx,ty),ux=tx/len,uy=ty/len,hs=13;
     const ax=x1-ux*hs, ay=y1-uy*hs, px=-uy*hs*.65, py=ux*hs*.65;
-    const path=`M${x0} ${y0} Q${cx} ${cy} ${ax} ${ay}`;
-    out.push(`<path d="${path}" stroke="#ffb52e" stroke-width="9" fill="none" stroke-linecap="round" opacity=".35" filter="url(#gl)"/>
-      <path class="flow" d="${path}" stroke="url(#gg)" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <polygon class="head" points="${x1},${y1} ${ax+px},${ay+py} ${ax-px},${ay-py}" fill="url(#gg)" stroke="#7a3d00" stroke-width="1" stroke-linejoin="round"/>`);
+    const path=`M${x0} ${y0} Q${cx} ${cy} ${x1} ${y1}`;
+    const pid='gp'+id;
+    out.push(`<path id="${pid}" d="${path}" fill="none" stroke="none"/>`);
+    const bg=sg<0?'0s':'1.6s';
+    for(const [dl,op] of [[0,1],[.12,.45]]){
+      out.push(`<g opacity="0"><path d="M-8 -10 L4 0 L-8 10" stroke="rgba(255,194,61,.28)" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M-8 -10 L4 0 L-8 10" stroke="#ffc23d" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <animateMotion dur="3.2s" begin="${parseFloat(bg)+dl}s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;.42;1" calcMode="spline" keySplines=".45 0 .25 1;0 0 1 1"><mpath href="#${pid}"/></animateMotion>
+        <animate attributeName="opacity" dur="3.2s" begin="${parseFloat(bg)+dl}s" repeatCount="indefinite" values="0;${op};${op};0;0" keyTimes="0;.1;.3;.44;1"/></g>`);
+    }
   }
   $('guide').innerHTML=defs+out.join('');
 }
@@ -367,11 +374,19 @@ deckEl.addEventListener('pointermove',e=>{
 });
 function endDrag(e){
   if(!drag||e.pointerId!==drag.id)return;
+  try{deckEl.releasePointerCapture(e.pointerId)}catch(_){}
   const {f,dx,w}=drag;drag=null;$('pL').classList.remove('target');$('pR').classList.remove('target');
   if(Math.abs(dx)>w*.45){play(dx<0?'L':'R',f)}
   else{f.classList.remove('drag');f.style.transition='transform .25s ease-out';f.style.transform='none';setTimeout(()=>{f.remove();if(!busy)setIdle(true)},260)}
 }
 deckEl.addEventListener('pointerup',endDrag);deckEl.addEventListener('pointercancel',endDrag);
+// Bấm nút ăn ngay 1 lần (iOS đôi khi nuốt cú click đầu sau khi kéo bài)
+(()=>{let down=null,sup=0;
+  document.addEventListener('pointerdown',e=>{down=e.target.closest('button')},true);
+  document.addEventListener('pointerup',e=>{const b=e.target.closest('button');if(b&&b===down&&!b.disabled){sup=Date.now();b.click()}down=null},true);
+  document.addEventListener('pointercancel',()=>{down=null},true);
+  document.addEventListener('click',e=>{if(e.isTrusted&&Date.now()-sup<700&&e.target.closest('button')){e.stopPropagation();e.preventDefault()}},true);
+})();
 $('newBtn').onclick=()=>$('ovNew').classList.add('show');
 $('noNew').onclick=()=>$('ovNew').classList.remove('show');
 $('yesNew').onclick=()=>{S=fresh();save();render();$('ovNew').classList.remove('show')};
