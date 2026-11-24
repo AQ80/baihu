@@ -45,20 +45,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 .fl{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s ease-out}
 .fl.up{transform:rotateY(180deg)}
 .fc{position:absolute;inset:0;border-radius:8%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.bk{background:
-  radial-gradient(circle at 50% 50%,rgba(255,200,90,.18),transparent 55%),
-  repeating-linear-gradient(45deg,rgba(243,210,122,.20) 0 1px,transparent 1px 8px),
-  repeating-linear-gradient(-45deg,rgba(243,210,122,.20) 0 1px,transparent 1px 8px),
-  linear-gradient(160deg,#a3173a 0%,#6e0d26 60%,#4a071a 100%);
-  border:2.5px solid #f3d27a;box-shadow:inset 0 0 0 4px #5a0a1f,inset 0 0 0 5.5px rgba(243,210,122,.7),0 10px 26px rgba(0,0,0,.55)}
-.bk::before{content:"";position:absolute;left:50%;top:50%;width:42%;aspect-ratio:1;transform:translate(-50%,-50%) rotate(45deg);border:2px solid #f3d27a;border-radius:10%;
-  background:radial-gradient(circle,#c4244a,#7a0e2a 70%);box-shadow:0 0 0 4px #5a0a1f,0 0 0 5.5px rgba(243,210,122,.6),0 0 18px rgba(255,180,60,.35)}
-.bk::after{content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);color:#ffe7a0;font-size:min(7vw,30px);text-shadow:0 0 8px rgba(255,200,90,.9)}
-.fr{transform:rotateY(180deg);background:linear-gradient(160deg,#fffef9,#f3ead6);border:2.5px solid #d9c08a;box-shadow:0 10px 26px rgba(0,0,0,.5);color:#1b1b22}
+.bk{background:#4a071a url(cardback.webp) center/100% 100% no-repeat;border:1.5px solid #c9a24f;box-shadow:0 10px 26px rgba(0,0,0,.55)}
+.fr{transform:rotateY(180deg);background:#fff;border:2.5px solid #d9c08a;box-shadow:0 10px 26px rgba(0,0,0,.5);color:#1b1b22}
 .fr.red{color:#d0103a}
-.co{position:absolute;font-family:Georgia,'Times New Roman',serif;font-weight:900;line-height:.92;text-align:center;font-size:clamp(18px,5.6vw,28px)}
-.co span{display:block;font-size:.8em}
-.co.ca{left:8%;top:5%}.co.cb{right:8%;bottom:5%;transform:rotate(180deg)}
+.co{position:absolute;font-family:Georgia,'Times New Roman',serif;font-weight:900;line-height:.9;text-align:center;font-size:clamp(32px,11vw,52px);letter-spacing:-.05em}
+.co span{display:block;font-size:.62em;letter-spacing:0}
+.co.ca{left:7%;top:4%}.co.cb{right:7%;bottom:4%;transform:rotate(180deg)}
 .pips{position:absolute;inset:18% 20%;display:grid;grid-template-columns:1fr 1fr;align-content:space-between;justify-items:center;font-size:clamp(16px,5vw,26px);line-height:1}
 .pips.one{display:flex;align-items:center;justify-content:center;font-size:clamp(46px,14vw,74px)}
 .pips.face{flex-direction:column;font-weight:900;font-family:Georgia,serif;font-size:clamp(40px,12vw,64px)}
@@ -77,7 +69,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 .hint .ar.l{animation:arl 1.4s ease-in-out infinite}.hint .ar.r{animation:arr 1.4s ease-in-out infinite}
 @keyframes arl{0%,100%{transform:none}50%{transform:translateX(-6px)}}@keyframes arr{0%,100%{transform:none}50%{transform:translateX(6px)}}
 .deck{touch-action:none;cursor:grab;z-index:4}
-.deck>.cd .bk{box-shadow:inset 0 0 0 4px #5a0a1f,inset 0 0 0 5.5px rgba(243,210,122,.7),0 2px 0 #d6b25e,0 4px 0 #4a071a,0 6px 0 #d6b25e,0 8px 0 #4a071a,0 10px 0 #d6b25e,0 18px 26px rgba(0,0,0,.6)}
+.deck>.cd .bk{box-shadow:0 2px 0 #d6b25e,0 4px 0 #4a071a,0 6px 0 #d6b25e,0 8px 0 #4a071a,0 10px 0 #d6b25e,0 18px 26px rgba(0,0,0,.6)}
 .msg[hidden]{display:none}
 .dar{position:absolute;z-index:3;width:clamp(34px,10vw,46px);height:clamp(34px,10vw,46px);color:var(--beer);filter:drop-shadow(0 0 8px rgba(255,194,61,.8));pointer-events:none;opacity:0;transition:opacity .2s}
 .dar svg{width:100%;height:100%;display:block}
@@ -146,6 +138,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 #fx{position:fixed;inset:0;z-index:60;pointer-events:none}
 button{touch-action:manipulation}
 html.pwa,html.pwa body{height:var(--H)}html.pwa body{position:relative}html.pwa #credit,html.pwa #helpBtn{position:absolute}
+.fr.img{background-color:#fff;background-size:100% 100%;background-position:center;background-repeat:no-repeat;border:2px solid #d9c08a}
 </style>
 </head>
 <body>
@@ -194,6 +187,7 @@ html.pwa,html.pwa body{height:var(--H)}html.pwa body{position:relative}html.pwa 
 <script>
 const $=id=>document.getElementById(id);
 const SU=[['♠',0],['♥',1],['♦',1],['♣',0]];
+(function(){new Image().src='cardback.webp';for(const v of [1,11,12,13])for(let s=0;s<4;s++){const i=new Image();i.src=`cards/${v}${s}.webp`}})();
 const RK=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 const PT=r=>r>=10?0:r; // điểm kiểu bài cào
 const NUT=(a,b)=>(PT(a)+PT(b))%10;
@@ -208,9 +202,9 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x&&x.deck&&x.L&&x.R)return x}catch(e){}return fresh()}
 S=load();if(S.sh){S.shields=(S.shields||[]).concat(Array(S.sh).fill('Trùm Hũ'));delete S.sh;}
 
-function faceHTML([v,s]){const[sym,red]=SU[s];
-  const pips=v>=11?`<div class="pips one face">${RK[v-1]}<small>${sym}</small></div>`:`<div class="pips one">${sym}</div>`;
-  return`<div class="fc fr${red?' red':''}"><div class="co ca">${RK[v-1]}<span>${sym}</span></div><div class="co cb">${RK[v-1]}<span>${sym}</span></div>${pips}</div>`}
+function faceHTML([v,s]){if(v===1||v>=11)return`<div class="fc fr img" style="background-image:url(cards/${v}${s}.webp)"></div>`;
+  const[sym,red]=SU[s];
+  return`<div class="fc fr${red?' red':''}"><div class="co ca">${RK[v-1]}<span>${sym}</span></div><div class="co cb">${RK[v-1]}<span>${sym}</span></div><div class="pips one">${sym}</div></div>`}
 function cardEl(c,up=true,rot=0){const d=document.createElement('div');d.className='cd';d.style.transform=`rotate(${rot}deg)`;d.innerHTML=`<div class="fl${up?' up':''}"><div class="fc bk"></div>${faceHTML(c)}</div>`;return d}
 function drawPile(id,arr){const el=$(id);[...el.querySelectorAll('.cd')].forEach(x=>x.remove());
   arr.slice(-3).forEach((c,i,a)=>{const k=arr.length-a.length+i;el.insertBefore(cardEl(c,true,((k*37)%11)-5),el.querySelector('.lbl'))})}
