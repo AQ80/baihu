@@ -2,6 +2,8 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
+<script>(function(){var d=document.documentElement;function f(){var st=navigator.standalone||matchMedia('(display-mode: standalone)').matches;if(!st)return;var h=Math.max(screen.height,innerHeight);d.style.setProperty('--H',h+'px');d.classList.add('pwa')}f();addEventListener('resize',f);addEventListener('pageshow',f)})()</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0a14">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -143,6 +145,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:ra
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-8px) rotate(-2deg)}75%{transform:translateX(8px) rotate(2deg)}}
 #fx{position:fixed;inset:0;z-index:60;pointer-events:none}
 button{touch-action:manipulation}
+html.pwa,html.pwa body{height:var(--H)}html.pwa body{position:relative}html.pwa #credit,html.pwa #helpBtn{position:absolute}
 </style>
 </head>
 <body>
