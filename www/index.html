@@ -2,6 +2,12 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
+<script>/* giữ âm thanh luôn bật trên iPhone: mở khoá lại mỗi lần chạm, khi quay lại app, khi bị gián đoạn */(function(){var O=window.AudioContext||window.webkitAudioContext;if(!O||O.__fix)return;var L=[],first=true;
+class W extends O{constructor(o){super(o);L.push(this);var me=this;this.addEventListener&&this.addEventListener('statechange',function(){if(me.state!=='running'&&!document.hidden)setTimeout(kick,300)})}}W.__fix=1;window.AudioContext=W;window.webkitAudioContext=W;
+function kick(){try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
+L.forEach(function(c){if(c.state==='closed')return;if(c.state!=='running'||first){try{var p=c.resume();p&&p.catch&&p.catch(function(){})}catch(e){}try{var b=c.createBuffer(1,1,22050),s=c.createBufferSource();s.buffer=b;s.connect(c.destination);s.start(0)}catch(e){}}});if(L.length)first=false}
+['pointerdown','touchstart','touchend','click','keydown'].forEach(function(e){addEventListener(e,kick,{capture:true,passive:true})});
+document.addEventListener('visibilitychange',function(){if(!document.hidden)kick()});addEventListener('pageshow',kick);addEventListener('focus',kick)})();</script>
 <script>(function(){var d=document.documentElement;function f(){var st=navigator.standalone||matchMedia('(display-mode: standalone)').matches;if(!st)return;var h=Math.max(screen.height,innerHeight);d.style.setProperty('--H',h+'px');d.classList.add('pwa')}f();addEventListener('resize',f);addEventListener('pageshow',f)})()</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
